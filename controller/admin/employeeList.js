@@ -29,7 +29,7 @@ findData = async (req, res) => {
 getempList = async (req, res) => {
   const data = req.user;
   const empdata = await employee.find();
-  res.render("emplist", { data, empdata });
+  res.render("pages/employee/emplist", { data, empdata });
 };
 
 
@@ -89,7 +89,7 @@ getemployeedata = async (req, res) => {
 viewemployeedata = async (req, res) => {
   const id = req.params.id;
   const data = await employee.findById(id);
-  res.render("viewemployeedata", { data });
+  res.render("pages/employee/viewemployeedata", { data });
 };
 
 
@@ -107,6 +107,42 @@ updatestatus = async (req, res) => {
 };
 
 
+// ------------------ UPDATE EMPLOYEE ----------------------
+getupdateemployee = async (req, res) => {
+  const id = req.params.id;
+  const data = await employee.findById({_id:id});
+  res.render("pages/employee/updateemployee", { data:data });
+};
+
+
+updateemployee = async (req, res) => {
+  try {
+    console.log(req.body);
+
+    const updatedEmployee = await employee.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
+    );
+console.log(updatedEmployee)
+    res.redirect("/employee/getemplist");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+
+deleteemployee = async (req, res) => {
+  await employee.deleteOne({_id:req.params.id});
+
+}
+
+
+
+
+
 
 module.exports = {
   insertData,
@@ -114,5 +150,8 @@ module.exports = {
   getempList,
   getemployeedata,
   viewemployeedata,
-  updatestatus
+  updatestatus,
+  getupdateemployee,
+  updateemployee,
+  deleteemployee,
 };

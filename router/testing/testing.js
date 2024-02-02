@@ -20,7 +20,7 @@ router.post('/login',testingCon.login)
 router.get('/profile',authenticateToken,testingCon.profile)
 
 // -------------------------- UPDATE PROFILE --------------------------
-router.get('/updateprofile',authenticateToken,testingCon.getProfile)
+router.get('/updateprofile',authenticateToken,testingCon.getupdaetProfile)
 router.post('/updatedprofile',authenticateToken,upload.single('photo'),testingCon.updatedProfile)
 
 // -------------------------- CHANGE PASSWORD --------------------------

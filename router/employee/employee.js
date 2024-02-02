@@ -27,4 +27,13 @@ router.get("/view/:id",employeeList.viewemployeedata);
 // ------------------- UPDATE DATA------------------------------
 router.post("/updatestatus/:id",employeeList.updatestatus);
 
+
+// ------------------- UPDATE EMPLOYEE------------------------------
+router.get("/getupdateemployee/:id",employeeList.getupdateemployee);
+router.post("/updateemployee/:id",employeeList.updateemployee);
+
+
+// ------------------- DELETE EMPLOYEE------------------------------
+router.delete("/deleteemployee/:id",employeeList.deleteemployee);
+
 module.exports=router

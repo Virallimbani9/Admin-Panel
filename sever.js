@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path');
 const port = 3000
 const db = require('./config/db');
 const dotenv = require('dotenv');
@@ -8,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const employeeRouter=require('./router/employee/employee')
 
 app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
 
 app.use(cookieParser());
 app.use(express.static('public'));

@@ -33,7 +33,7 @@ signup = async (req, res) => {
 };
 
 getSignup = async (req, res) => {
-  res.render('pages-signup')
+  res.render('/pages/auth/pages-signup')
 }
 
 
@@ -59,7 +59,7 @@ login = async (req, res) => {
     };
 
 getLogin = async (req, res) => {
-  res.render('pages-login')
+  res.render('pages/auth/pages-login')
 }
 
 logout = async (req, res) => {
@@ -72,14 +72,14 @@ logout = async (req, res) => {
 // -------------------------- PROFILE --------------------------
 
 profile = async (req, res) => {
-  res.render('profile',{data:req.user})
+  res.render('pages/user/profile',{data:req.user})
 }
 
 
 // -------------------------- UPDATE PROFILE --------------------------
 
-getProfile = async (req, res) => {
-  res.render('updateprofile',{data:req.user})
+getupdaetProfile = async (req, res) => {
+  res.render('pages/user/updateprofile',{data:req.user})
 }
 
 updatedProfile = async (req, res) => {
@@ -92,11 +92,10 @@ updatedProfile = async (req, res) => {
     if(!exists){
       const user = await User.findByIdAndUpdate(req.user._id,{photo:req.file.filename});
       await user.save();
-      // return res.json({message:"No File"})
+    
     }if (exists) {
       fs.unlinkSync(photoLoc1);
     }
-    // fs.unlinkSync(photoLoc1);
 
     const user = await User.findByIdAndUpdate(req.user._id,{ name,email,phone,city,photo:req.file.filename});
     await user.save();
@@ -110,7 +109,7 @@ updatedProfile = async (req, res) => {
 // -------------------------- CHANGE PASSWORD --------------------------
 
 getPassword = async (req, res) => {
-  res.render('changepassword',{data:req.user})
+  res.render('pages/auth/changepassword',{data:req.user})
 }
 
 changedPassword = async (req, res) => {
@@ -148,7 +147,7 @@ changedPassword = async (req, res) => {
 // -------------------------- FORGET PASSWORD --------------------------
 
 getForgetPassword = async (req, res) => {
-  res.render('forgetpassword')
+  res.render('pages/auth/forgetpassword')
 }
 
 forgetedPassword = async (req, res) => {
@@ -179,7 +178,7 @@ catch (error) {
 // -------------------------- RESET PASSWORD --------------------------
 
 getResstPassword = async (req, res) => {
-  res.render('resetpassword',{data:req.params.token})
+  res.render('pages/auth/resetpassword',{data:req.params.token})
 }
 
 resetedPassword = async (req, res) => {
@@ -220,7 +219,7 @@ module.exports = {
     login,
     logout,
     profile,
-    getProfile,
+    getupdaetProfile,
     updatedProfile,
     getPassword,
     changedPassword,

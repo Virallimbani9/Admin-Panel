@@ -34,10 +34,10 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-      <%-include('include/header')%>
+      <%-include('../../include/header')%>
 
       <!-- ========== Left Sidebar Start ========== -->
-      <%-include('include/leftsidebar')%>
+      <%-include('../../include/leftsidebar')%>
       <!-- Left Sidebar End -->
 
       <!-- ============================================================== -->
@@ -83,7 +83,7 @@
             </table>
 
           </div>
-          <%-include ("include/footer") %>
+          <%-include ("../../include/footer") %>
         </div>
         <!-- end main content-->
       </div>
@@ -134,8 +134,11 @@
             {"data":'salary'},
             {"data": null,
                 render: function(data, type, row) {
-                  console.log(data)
-                  return `<a href="/employee/view/${data._id}" class="btn btn-primary">View</a>`;
+                  return `<div>
+                    <a href="/employee/view/${data._id}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                    <a href="/employee/getupdateemployee/${data._id}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                    <button value="${data._id}" class="btn btn-danger deleteBtn"><i class="mdi mdi-delete"></i></button>
+                    </div>`;
                 }},
                 {
                     data: null,
@@ -151,6 +154,38 @@
               ]
         });
       });
+
+      $('#dataTable').on('click', '.deleteBtn', function () {
+        const employeeId = $(this).val();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          console.log("inserted employee")
+            if (result.isConfirmed) {
+              console.log("conferm")
+                $.ajax({
+                    url: `/employee/deleteemployee/${employeeId}`,
+                    method: 'delete',
+                    success: function () {
+                      setTimeout(function () {
+                        $('#dataTable').DataTable().ajax.reload();
+                    }, 500); 
+                        Swal.fire('Deleted!', 'Employee has been deleted.', 'success');
+                    },
+                    error: function () {  
+                        Swal.fire('Error!', 'Failed to delete the employee.', 'error');
+                    }
+                });
+            }
+        });
+    });
+
 
       $(document).on('change', '.switch', function (e) {
        let id  = $(this).val();

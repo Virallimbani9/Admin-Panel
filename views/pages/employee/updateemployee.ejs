@@ -24,16 +24,16 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <%-include('include/header')%>
+        <%-include('../../include/header')%>
         
         <!-- ========== Left Sidebar Start ========== -->
-        <%-include('include/leftsidebar')%>
+        <%-include('../../include/leftsidebar')%>
         <!-- Left Sidebar End -->
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="main-content" action="/testing/updateprofile" method="post">
+        <div class="main-content" action="/employee/updateemployee" method="post">
 
             <div class="page-content">
                 <div class="container-fluid">
@@ -42,9 +42,9 @@
                             <div class="page-title-box">
                                 <h4>Edit</h4>
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="/testing/index">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="/testing/profile">Profile</a></li>
-                                        <li class="breadcrumb-item active"><a href="/testing/updateprofile">Edit</a></li>
+                                        <li class="breadcrumb-item"><a href="/employee/emplidt">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="/employee/updateemployee">Profile</a></li>
+                                        <!-- <li class="breadcrumb-item active"><a href="/testing/updateprofile">Edit</a></li> -->
                                     </ol>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                               </div>
                             <div class="col-lg-8">
                                 <div class="card" style="height: 95%">
-                                    <form action="/testing/updatedprofile" method="post" enctype="multipart/form-data">
+                                    <form action="/employee/updateemployee/<%= data._id %>" method="post" >
                                     <div class="card-body">
                                        
                                         <div class="row mb-3">
@@ -74,15 +74,6 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" class="form-control" name="name" value="<%= data.name %>">
-                                            </div>
-                                        </div>
-                                       
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Email</h6>
-                                            </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control" name="email" value="<%= data.email %>">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -99,6 +90,30 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" class="form-control" name="city" value="<%= data.city %>">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Gender</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="text" class="form-control" name="gender" value="<%= data.gender %>">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Designation</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="text" class="form-control" name="designation" value="<%= data.designation %>">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Salary</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="text" class="form-control" name="salary" value="<%= data.salary %>">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -130,7 +145,7 @@
                         </div>
                     </div>
 
-                    <%-include ("include/footer") %>
+                    <%-include ("../../include/footer") %>
                 </div>
                 <!-- end main content-->
 
