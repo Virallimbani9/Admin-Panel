@@ -25,6 +25,8 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
 
+    <link rel="stylesheet" href="/assets/css/checkbox.css">
+
   </head>
 
   <body data-sidebar="dark">
@@ -140,9 +142,9 @@
                     render: function(data, type, row) {
                       console.log("status",data);
                       if(data.status == "active" ){
-                        return `<input type="checkbox" name="my_checkbox" id="${data._id}" class="btn-status1" value="${data._id}" checked>`
+                        return `<div class="checkbox-wrapper-14"><input type="checkbox" class="switch" name="my_checkbox" id="${data._id}" value="${data._id}" checked> </div>`
                     }else{
-                      return `<input type="checkbox" name="my_checkbox" id="${data._id}" class="btn-status1" value="${data._id}">`
+                      return `<div class="checkbox-wrapper-14"><input type="checkbox" class="switch" name="my_checkbox" id="${data._id}" value="${data._id}"></div>`
                     }
                   }
                 }
@@ -150,29 +152,22 @@
         });
       });
 
-      $(document).on('change', '.btn-status1', function (e) {
+      $(document).on('change', '.switch', function (e) {
        let id  = $(this).val();
        $.post(`/employee/updatestatus/${id}`,function(data){
-        Swal.fire({
-        title: `${data.data.name}`,
-        text: "Status Change...!",
-        icon: "success",
+
+      Swal.fire({
+      icon: "success",
+      title: `${data.data.name}`,
+      showConfirmButton: false,
+      timer: 1000
       });
        })
     });
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 
 </html>
 
-
-
-
-
-
-
-
-
-
-
+<!-- <input type="checkbox" name="my_checkbox" id="${data._id}" class="tgl tgl-flip" value="${data._id}" checked> -->
