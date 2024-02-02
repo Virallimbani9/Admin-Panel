@@ -4,9 +4,9 @@ const path = require('path');
 const port = 3000
 const db = require('./config/db');
 const dotenv = require('dotenv');
-const testingrouter=require('./router/testing/testing')
+const testingrouter=require('./router/testing/testing');
 const cookieParser = require('cookie-parser');
-const employeeRouter=require('./router/employee/employee')
+const employeeRouter=require('./router/employee/employee');
 
 app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"));
