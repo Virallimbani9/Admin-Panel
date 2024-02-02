@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List</title>
+    <meta content="Premium Multipurpose Admin & Dashboard Template"
+      name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Bootstrap Css -->
+    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style"
+      rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet"
+      type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+
+  </head>
+
+  <body data-sidebar="dark">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+      <%-include('include/header')%>
+
+      <!-- ========== Left Sidebar Start ========== -->
+      <%-include('include/leftsidebar')%>
+      <!-- Left Sidebar End -->
+
+      <!-- ============================================================== -->
+      <!-- Start right Content here -->
+      <!-- ============================================================== -->
+      <div class="main-content">
+
+        <div class="page-content">
+          <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="page-title-box">
+                  <h4>Employee List</h4>
+                  <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a
+                        href="javascript: void(0);">Lexa</a></li>
+                    <li class="breadcrumb-item"><a
+                        href="/employee/getemplist">List</a></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <table id="dataTable" class="display">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>IMAGE</th>
+                  <th>PHONE</th>
+                  <th>CITY</th>
+                  <th>GRNDER</th>
+                  <th>DESIGNATION</th>
+                  <th>SALARY</th>
+                  <th>Action</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+              <!-- <tbody>
+                        </tbody> -->
+            </table>
+
+          </div>
+          <%-include ("include/footer") %>
+        </div>
+        <!-- end main content-->
+      </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    <script
+      src="/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+    <!--Morris Chart-->
+    <script src="/assets/libs/morris.js/morris.min.js"></script>
+    <script src="/assets/libs/raphael/raphael.min.js"></script>
+
+    <script src="/assets/js/pages/dashboard.init.js"></script>
+
+    <!-- App js -->
+    <script src="/assets/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script
+      src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+        $("#dataTable").DataTable({
+          "serverSide": true,
+          'paging': true,
+          'searching':true,
+          'ordering': true,
+          'serverMethod': "GET",
+          "ajax": {
+            'url': '/employee/getemployeedata',
+           
+          },
+          'columns': [
+            {"data":'id'},
+            {"data":'name'},
+            { "data": 'image', render: function (data) { 
+              return `<img src="/assets/upload/${data}" alt="User Image" style="width: 66px; height: 53px; margin-left:9%">`; 
+            }},
+            {"data":'phone'},
+            {"data":'city'},
+            {"data":'gender'},
+            {"data":'designation'},
+            {"data":'salary'},
+            {"data": null,
+                render: function(data, type, row) {
+                  console.log(data)
+                  return `<a href="/employee/view/${data._id}" class="btn btn-primary">View</a>`;
+                }},
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                      console.log("status",data);
+                      if(data.status == "active" ){
+                        return `<input type="checkbox" name="my_checkbox" id="${data._id}" class="btn-status1" value="${data._id}" checked>`
+                    }else{
+                      return `<input type="checkbox" name="my_checkbox" id="${data._id}" class="btn-status1" value="${data._id}">`
+                    }
+                  }
+                }
+              ]
+        });
+      });
+
+      $(document).on('change', '.btn-status1', function (e) {
+       let id  = $(this).val();
+       $.post(`/employee/updatestatus/${id}`,function(data){
+        Swal.fire({
+        title: `${data.data.name}`,
+        text: "Status Change...!",
+        icon: "success",
+      });
+       })
+    });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
