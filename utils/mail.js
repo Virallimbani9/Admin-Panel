@@ -23,7 +23,7 @@ const sendMail = async (option) => {
      if (error) {
        console.log(error);
      } else {
-       console.log("Server is ready to take our messages");
+       console.log("Mail is Send to " + option.email);
      }
    });
  } catch (error) {

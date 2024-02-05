@@ -11,7 +11,7 @@ async function authenticateToken(req, res, next) {
     }
     const decodedata= jwt.verify(token,process.env.SECRET_KEY);  
 
-    const user =await User.findOne({_id:decodedata.id})
+    const user = await User.findOne({_id:decodedata.id})
   
     jwt.verify(token,process.env.SECRET_KEY, (err, user1) => {
       if (err) {
