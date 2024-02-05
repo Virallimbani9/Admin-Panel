@@ -1,6 +1,6 @@
 const employee = require("../../model/employee/employeeSchema");
 const query = require("../../model/employee/emoloyeeQurey");
-const user = require("../../model/testing/testing");
+// const user = require("../../model/testing/testing");
 
 
 // ------------------ INSERT DATA ---------------------
