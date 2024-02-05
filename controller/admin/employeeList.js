@@ -26,7 +26,7 @@ findData = async (req, res) => {
 
 
 // ------------------ GET EMPLOYEE LIST ----------------------
-getempList = async (req, res) => {
+getEmpList = async (req, res) => {
   const data = req.user;
   const empdata = await employee.find();
   res.render("pages/employee/emplist", { data, empdata });
@@ -34,7 +34,7 @@ getempList = async (req, res) => {
 
 
 // ------------------ GET EMPLOYEE DATA ----------------------
-getemployeedata = async (req, res) => {
+getEmployeeData = async (req, res) => {
 
   try {
     let data, regex;
@@ -86,7 +86,7 @@ getemployeedata = async (req, res) => {
 
 
 // ------------------ VIEW EMPLOYEE DATA ----------------------
-viewemployeedata = async (req, res) => {
+viewEmployeeData = async (req, res) => {
   const user = req.user;
   const id = req.params.id;
   const data = await employee.findById(id);
@@ -95,7 +95,7 @@ viewemployeedata = async (req, res) => {
 
 
 // ------------------ UPDATE STATUS ----------------------
-updatestatus = async (req, res) => {
+updateStatus = async (req, res) => {
   const id = req.params.id;
   const data = await employee.findById({_id:id});
   if (data.status == "active") {
@@ -109,7 +109,7 @@ updatestatus = async (req, res) => {
 
 
 // ------------------ UPDATE EMPLOYEE ----------------------
-getupdateemployee = async (req, res) => {
+getUpdateEmployee = async (req, res) => {
   const user = req.user;
   const id = req.params.id;
   const data = await employee.findById({_id:id});
@@ -117,7 +117,7 @@ getupdateemployee = async (req, res) => {
 };
 
 
-updateemployee = async (req, res) => {
+updateEmployee = async (req, res) => {
   try {
     console.log(req.body);
 
@@ -136,7 +136,7 @@ console.log(updatedEmployee)
 
 
 
-deleteemployee = async (req, res) => {
+deleteEmployee = async (req, res) => {
   await employee.deleteOne({_id:req.params.id});
 
 }
@@ -149,11 +149,11 @@ deleteemployee = async (req, res) => {
 module.exports = {
   insertData,
   findData,
-  getempList,
-  getemployeedata,
-  viewemployeedata,
-  updatestatus,
-  getupdateemployee,
-  updateemployee,
-  deleteemployee,
+  getEmpList,
+  getEmployeeData,
+  viewEmployeeData,
+  updateStatus,
+  getUpdateEmployee,
+  updateEmployee,
+  deleteEmployee,
 };

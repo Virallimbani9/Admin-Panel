@@ -8,19 +8,19 @@ const upload = require("../../middleware/upload");
 router.get('/index',authenticateToken ,testingCon.index)
 
 // -------------------------- SIGN --------------------------
-router.get('/signup',testingCon.getSignup)
-router.post('/signup',testingCon.signup)
+router.get('/signup',testingCon.getSignUp)
+router.post('/signup',testingCon.signUp)
 
 // -------------------------- LOGIN --------------------------
-router.get('/login',testingCon.getLogin)
-router.get('/logout',testingCon.logout)
-router.post('/login',testingCon.login)
+router.get('/login',testingCon.getLogIn)
+router.get('/logout',testingCon.logOut)
+router.post('/login',testingCon.logIn)
 
 // -------------------------- PROFILE --------------------------
 router.get('/profile',authenticateToken,testingCon.profile)
 
 // -------------------------- UPDATE PROFILE --------------------------
-router.get('/updateprofile',authenticateToken,testingCon.getupdaetProfile)
+router.get('/updateprofile',authenticateToken,testingCon.getUpdaetProfile)
 router.post('/updatedprofile',authenticateToken,upload.single('photo'),testingCon.updatedProfile)
 
 // -------------------------- CHANGE PASSWORD --------------------------

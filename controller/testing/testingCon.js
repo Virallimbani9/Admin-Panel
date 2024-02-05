@@ -19,7 +19,7 @@ index = async (req, res) => {
 
 // -------------------------- SIGN --------------------------
 
-signup = async (req, res) => {
+signUp = async (req, res) => {
     const { name, password,email,city,phone } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
   
@@ -32,14 +32,14 @@ signup = async (req, res) => {
     }
 };
 
-getSignup = async (req, res) => {
+getSignUp = async (req, res) => {
   res.render('pages/auth/pages-signup')
 }
 
 
 // -------------------------- LOGIN --------------------------
 
-login = async (req, res) => {
+logIn = async (req, res) => {
 
  const { name, password } = req.body;
  const user = await User.findOne({ name });
@@ -58,11 +58,11 @@ login = async (req, res) => {
     }
     };
 
-getLogin = async (req, res) => {
+getLogIn = async (req, res) => {
   res.render('pages/auth/pages-login')
 }
 
-logout = async (req, res) => {
+logOut = async (req, res) => {
 
   res.clearCookie("token")
   res.redirect('/testing/login')
@@ -78,7 +78,7 @@ profile = async (req, res) => {
 
 // -------------------------- UPDATE PROFILE --------------------------
 
-getupdaetProfile = async (req, res) => {
+getUpdaetProfile = async (req, res) => {
   res.render('pages/user/updateprofile',{data:req.user})
 }
 
@@ -213,13 +213,13 @@ resetedPassword = async (req, res) => {
 
 module.exports = {
     index,
-    getSignup,
-    signup,
-    getLogin,
-    login,
-    logout,
+    getSignUp,
+    signUp,
+    getLogIn,
+    logIn,
+    logOut,
     profile,
-    getupdaetProfile,
+    getUpdaetProfile,
     updatedProfile,
     getPassword,
     changedPassword,
