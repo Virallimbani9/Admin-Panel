@@ -21,19 +21,19 @@ router.get("/getemployeedata",authenticateToken,employeeList.getemployeedata)
 
 
 // ------------------- VIEW DATA------------------------------
-router.get("/view/:id",employeeList.viewemployeedata);
+router.get("/view/:id",authenticateToken,employeeList.viewemployeedata);
 
 
 // ------------------- UPDATE DATA------------------------------
-router.post("/updatestatus/:id",employeeList.updatestatus);
+router.post("/updatestatus/:id",authenticateToken,employeeList.updatestatus);
 
 
 // ------------------- UPDATE EMPLOYEE------------------------------
-router.get("/getupdateemployee/:id",employeeList.getupdateemployee);
-router.post("/updateemployee/:id",employeeList.updateemployee);
+router.get("/getupdateemployee/:id",authenticateToken,employeeList.getupdateemployee);
+router.post("/updateemployee/:id",authenticateToken,employeeList.updateemployee);
 
 
 // ------------------- DELETE EMPLOYEE------------------------------
-router.delete("/deleteemployee/:id",employeeList.deleteemployee);
+router.delete("/deleteemployee/:id",authenticateToken,employeeList.deleteemployee);
 
 module.exports=router

@@ -87,9 +87,10 @@ getemployeedata = async (req, res) => {
 
 // ------------------ VIEW EMPLOYEE DATA ----------------------
 viewemployeedata = async (req, res) => {
+  const user = req.user;
   const id = req.params.id;
   const data = await employee.findById(id);
-  res.render("pages/employee/viewemployeedata", { data });
+  res.render("pages/employee/viewemployeedata", { data, user});
 };
 
 
@@ -109,9 +110,10 @@ updatestatus = async (req, res) => {
 
 // ------------------ UPDATE EMPLOYEE ----------------------
 getupdateemployee = async (req, res) => {
+  const user = req.user;
   const id = req.params.id;
   const data = await employee.findById({_id:id});
-  res.render("pages/employee/updateemployee", { data:data });
+  res.render("pages/employee/updateemployee", { data:data,user:user });
 };
 
 
