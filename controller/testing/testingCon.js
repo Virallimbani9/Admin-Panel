@@ -33,7 +33,7 @@ signup = async (req, res) => {
 };
 
 getSignup = async (req, res) => {
-  res.render('/pages/auth/pages-signup')
+  res.render('pages/auth/pages-signup')
 }
 
 
@@ -167,7 +167,7 @@ forgetedPassword = async (req, res) => {
     message: `Hi ${user.name}, Please click on the link below to reset your password."http://localhost:3000/testing/resetpassword/${token}" Reset Password Thanks`,
   }) 
 
-  res.json({ message: 'Reset password link sent to your email account' });
+  res.redirect('/testing/login');
 }
 catch (error) {
   console.log(error)
